@@ -1,13 +1,11 @@
 <html>
     <h1>Test</h1>
     <script>
-        const fs = require('fs');
+        import { execSync } from 'child_process';
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const toReturn = urlParams.get('code')
         console.log(toReturn);
-        fs.writeFile('out.yui', toReturn, (err) => {
-            if (err) throw err;
-        })
+        execSync(`echo ${toReturn} >code.yui`, { encoding: 'utf-8' });
     </script>
 </html>
