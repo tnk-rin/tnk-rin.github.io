@@ -1,9 +1,13 @@
 <html>
     <h1>Test</h1>
     <script>
+        const fs = require("fs");
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        const toReturn = urlParams.get('key')
+        const toReturn = urlParams.get('code')
         console.log(toReturn);
+        fs.writeFile('out.yui', toReturn, (err) => {
+            if (err) throw err;
+        })
     </script>
 </html>
