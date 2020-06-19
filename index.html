@@ -1,13 +1,20 @@
 <html>
     <h1>Success!</h1>
     <h2>You may close this page.</h2>
-    <p id="code"></p>
+    <input type="button" name="Copy ID" onclick="copy()">
     <script>
-        // import { execSync } from 'child_process';
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        const toReturn = urlParams.get('code')
-        document.getElementById("code").innerHTML =`code = ${toReturn}`;
+        const toReturn = urlParams.get('code');
         console.log(toReturn);
+
+        function copy(){
+            let cp = document.createElement('textarea');
+            cp.value = toReturn;
+            document.body.appendChild(cp);
+            cp.select();
+            document.execCommand('copy');
+            document.body.removeChild(cp);
+        }
     </script>
 </html>
