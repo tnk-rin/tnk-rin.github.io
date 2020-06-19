@@ -16,7 +16,7 @@
                 font-weight: 300;
                 font-size: 1.7rem;
                 padding: 0 29rem 1rem 0;
-                color: #ffffff2a;
+                color: #ffffff80;
             }
             h2{
                 font-size: 2rem;
@@ -64,6 +64,21 @@
             input#btnCopy:hover{
                 background-color: #5b666b;
             }
+            #cblock{
+                font-family: 'Montserrat', sans-serif;
+                text-align: center;
+                font-weight: 300;
+                font-size: 1.68rem;
+                padding: 0 150rem 6rem 0;
+                color: #ffffff30;
+                position: absolute;
+                bottom: 0;
+            }
+            #cblock-content{
+                position: absolute;
+                text-align: center;
+                word-break: break-all;
+            }
         </style>
         <title>NadeshikoBot</title>
         <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">  -->
@@ -77,14 +92,16 @@
                 <h2>Copy and send in NadeshikoBot#5973's DMs.</h2>
                 <input type="button" id="btnCopy" value="Copy ID" onclick="copy()">
             </div>
+            <div id="cblock">
+                <p id="cblock-content">Error</p>
+            </div>
         </div>
         <script>
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const toReturn = `.setosuoauth ${urlParams.get('code')}`;
+            document.getElementById('cblock-content').innerHTML = urlParams.get('code');
             console.log(toReturn);
-
-
 
             function copy(){
                 if (!urlParams.get('code')){
