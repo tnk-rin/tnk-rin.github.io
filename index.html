@@ -14,7 +14,7 @@
             h1 {
                 font-family: 'Montserrat', sans-serif;
                 font-size: 1.7rem;
-                padding: 0 29.5rem 1rem 0;
+                padding: 0 28.5rem 1rem 0;
                 color: #ffffff2a;
             }
             h2{
@@ -46,8 +46,8 @@
             }
             input#btnCopy{
                 font-family: 'Montserrat', sans-serif;
-                font-weight: 700;
-                width: 10rem;
+                font-weight: 500;
+                width: 12.5rem;
                 background-color: #102027;
                 border: none;
                 border-radius: 5px;
@@ -58,9 +58,12 @@
                 display: inline-block;
                 font-size: 2rem;
             }
+            input#btnCopy:hover{
+                background-color: #5b666b;
+            }
         </style>
         <title>NadeshikoBot</title>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@300;500&display=swap" rel="stylesheet">
         <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/557816816378970122/723641221909840002/thumb-185241.png">
     </head>
     <body>
@@ -77,8 +80,9 @@
             const toReturn = `.setosuoauth ${urlParams.get('code')}`;
             console.log(toReturn);
 
+
+
             function copy(){
-                
                 if (!urlParams.get('code')){
                     document.getElementById('btnCopy').value = "Error";
                 } else {
@@ -91,7 +95,9 @@
                     document.getElementById('btnCopy').value = "Copied!";
                 }
             }
+
             /*
+
                 swag gabriel dropout
 
                 ⢀⢀⢀⢀⢀⢀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣄⢀⠠⡀ 
@@ -133,6 +139,7 @@
                 ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⠉⢀⠛⠳⢾⣷⣾⣿⣹⣿⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢧ 
                 ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢹⣿⣿⣇⢻⡀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⠘⡆
             */
+
         </script>
     </body>
 </html>
