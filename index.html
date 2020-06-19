@@ -3,22 +3,24 @@
         <style>
             /* stylesheet uwu*/
             *{
-                font-family: 'Roboto', sans-serif;
+                font-family: 'Montserrat', sans-serif;
                 font-size: 62.5%;
                 padding: 0;
                 margin: 0;
             }
             body{
-                background: #006064;
+                background: #102027;
             }
-            h1{
-                font-family: 'Roboto Condensed';
+            h1 {
+                font-family: 'Montserrat', sans-serif;
                 font-size: 1.7rem;
-                padding: 0 17.5rem 0 0;
+                padding: 0 29.5rem 1rem 0;
+                color: #ffffff2a;
             }
             h2{
                 font-size: 2rem;
                 font-weight: 400;
+                color: #ffffff;
             }
             .plsCenterMe{
                 display: flex;
@@ -36,14 +38,17 @@
                 height: 12rem;
                 padding: 0 1rem;
 
-                background: #428e92;
+                background: #1a2a2f;
+                border-color: #ffffff0a;
+                border-style: solid;
+                border-width: 2px;
                 border-radius: 5px;
             }
             input#btnCopy{
-                font-family: 'Roboto Condensed';
+                font-family: 'Montserrat', sans-serif;
                 font-weight: 700;
                 width: 10rem;
-                background-color: #00363a;
+                background-color: #102027;
                 border: none;
                 border-radius: 5px;
                 color: white;
@@ -55,7 +60,7 @@
             }
         </style>
         <title>NadeshikoBot</title>
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700|Roboto:ital,wght@0,100;0,300;1,100;1,300" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
         <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/557816816378970122/723641221909840002/thumb-185241.png">
     </head>
     <body>
@@ -69,17 +74,22 @@
         <script>
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
-            const toReturn = urlParams.get('code');
+            const toReturn = `.setosuoauth ${urlParams.get('code')}`;
             console.log(toReturn);
 
             function copy(){
-                let cp = document.createElement('textarea');
-                cp.value = toReturn;
-                document.body.appendChild(cp);
-                cp.select();
-                document.execCommand('copy');
-                document.body.removeChild(cp);
-                document.getElementById('btnCopy').value = "Copied!";
+                
+                if (!urlParams.get('code')){
+                    document.getElementById('btnCopy').value = "Error";
+                } else {
+                    let cp = document.createElement('textarea');
+                    cp.value = toReturn;
+                    document.body.appendChild(cp);
+                    cp.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(cp);
+                    document.getElementById('btnCopy').value = "Copied!";
+                }
             }
             /*
                 swag gabriel dropout
