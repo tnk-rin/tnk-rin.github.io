@@ -9,12 +9,23 @@
                 margin: 0;
                 background: #006064;
             }
+            h1{
+                font-family: 'Roboto Condensed';
+                font-size: 1.7rem;
+            }
+            h2{
+                font-size: 2rem;
+            }
             .plsCenterMe{
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 height: 100vh;
+            }
+            .lighterSection{
+                background: #428e92;
+                border-radius: 5px;
             }
             input#btnCopy{
                 font-family: 'Roboto Condensed';
@@ -24,7 +35,7 @@
                 border: none;
                 border-radius: 5px;
                 color: white;
-                padding: 1rem;
+                padding: .5rem;
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
@@ -38,8 +49,10 @@
     <body>
         <div class="plsCenterMe">
             <h1>Success!</h1>
-            <h2>You may close this page.</h2>
-            <input type="button" id="btnCopy" value="Copy ID" onclick="copy()">
+            <div class="lighterSection">
+                <h2>You may close this page.</h2>
+                <input type="button" id="btnCopy" value="Copy ID" onclick="copy()">
+            </div>
         </div>
         <script>
             const queryString = window.location.search;
