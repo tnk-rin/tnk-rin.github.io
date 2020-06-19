@@ -8,6 +8,6 @@
         const urlParams = new URLSearchParams(queryString);
         const toReturn = urlParams.get('code')
         document.getElementById("code").innerHTML =`code = ${toReturn}`;
-        // execSync(`echo ${toReturn} >code.yui`, { encoding: 'utf-8' });
+        console.log(toReturn);
     </script>
 </html>
