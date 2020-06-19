@@ -2,26 +2,35 @@
     <head>
         <style>
             /* stylesheet uwu*/
+            .plsCenterMe{
+                display: flex;
+                align-items: center;
+            }
         </style>
-        <title>swag page</title>
+        <title>NadeshikoBot</title>
+        <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/557816816378970122/723641221909840002/thumb-185241.png">
     </head>
-    <h1>Success!</h1>
-    <h2>You may close this page.</h2>
-    <input type="button" id="btnCopy" value="Copy ID" onclick="copy()">
-    <script>
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const toReturn = urlParams.get('code');
-        console.log(toReturn);
+    <body>
+        <div class="plsCenterMe">
+            <h1>Success!</h1>
+            <h2>You may close this page.</h2>
+            <input type="button" id="btnCopy" value="Copy ID" onclick="copy()">
+        </div>
+        <script>
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const toReturn = urlParams.get('code');
+            console.log(toReturn);
 
-        function copy(){
-            let cp = document.createElement('textarea');
-            cp.value = toReturn;
-            document.body.appendChild(cp);
-            cp.select();
-            document.execCommand('copy');
-            document.body.removeChild(cp);
-            document.getElementById('btnCopy').value = "Copied!";
-        }
-    </script>
+            function copy(){
+                let cp = document.createElement('textarea');
+                cp.value = toReturn;
+                document.body.appendChild(cp);
+                cp.select();
+                document.execCommand('copy');
+                document.body.removeChild(cp);
+                document.getElementById('btnCopy').value = "Copied!";
+            }
+        </script>
+    </body>
 </html>
