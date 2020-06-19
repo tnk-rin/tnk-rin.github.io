@@ -1,7 +1,13 @@
 <html>
+    <head>
+        <style>
+            /* stylesheet uwu*/
+        </style>
+        <title>swag page</title>
+    </head>
     <h1>Success!</h1>
     <h2>You may close this page.</h2>
-    <input type="button" name="Copy ID" onclick="copy()">
+    <input type="button" id="btnCopy" value="Copy ID" onclick="copy()">
     <script>
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
@@ -15,6 +21,7 @@
             cp.select();
             document.execCommand('copy');
             document.body.removeChild(cp);
+            document.getElementById('btnCopy').value = "Copied!";
         }
     </script>
 </html>
