@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<style>
+    @font-face {
+        font-family: 'numbers';
+        src: url('media/fonts/maccalc.ttf') format('truetype');
+    }
+    
+     :root {
+        --border: black;
+    }
+    
+    #calc {
+        background-image: url("media/img/bground.png");
+        background-size: 6px 6px;
+        width: 156px;
+        height: 212px;
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid black;
+        box-shadow: /* Inner Border */
+        -1px 0 0 0 var(--border), 1px 0 0 0 var(--border), 0 -2px 0 0 var(--border), 0 2px 0 0 var(--border), 0 -5px 0 -2px var(--border), 0 5px 0 -2px var(--border), 0 -4px 0 -4px var(--border), 0 4px 0 -4px var(--border), 0 -5px 0 -4px var(--border), 0 5px 0 -4px var(--border), 0 -5px 0 -2px var(--border), 0 5px 0 -2px var(--border);
+    }
+    
+    .btn {
+        text-align: right;
+        font-size: x-small;
+        width: 26px;
+        height: 24px;
+        padding: 0;
+        margin: 0;
+        margin-right: 4px;
+        padding-top: 2px;
+        padding-left: 2px;
+        padding-bottom: 2px;
+        padding-right: 6px;
+        font-family: 'numbers';
+        background-color: white;
+        color: black;
+        box-shadow: 4px 4px black;
+        border: solid 2px black;
+    }
+    
+    .btn:active {
+        background-color: black;
+        color: white;
+        border: solid 2px white;
+    }
+    
+    #widebtn {
+        text-align: left;
+        font-size: x-small;
+        width: 60px;
+        height: 24px;
+        margin-right: 4px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        padding-left: 8px;
+        font-family: 'numbers';
+        background-color: white;
+        color: black;
+        box-shadow: 4px 4px black;
+        border: solid 2px black;
+    }
+    
+    #widebtn:active {
+        background-color: black;
+        color: white;
+        border: solid 2px white;
+    }
+    
+    #tallbtn {
+        font-size: x-small;
+        position: relative;
+        top: -32px;
+        left: 0px;
+        padding: 0;
+        margin: 0;
+        padding-top: 38px;
+        padding-bottom: 4px;
+        padding-left: 2px;
+        vertical-align: top;
+        width: 26px;
+        height: 56px;
+        text-align: center;
+        font-family: 'numbers';
+        background-color: white;
+        color: black;
+        box-shadow: 4px 4px black;
+        border: solid 2px black;
+    }
+    
+    #tallbtn:active {
+        background-color: black;
+        color: white;
+        border: solid 2px white;
+    }
+    
+    #row {
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 8px;
+        margin-left: 12px;
+    }
+    
+    #display {
+        border: solid 2px black;
+        text-align: right;
+        padding-left: 2px;
+        margin-left: 12px;
+        margin-top: 8px;
+        margin-bottom: 6px;
+        width: 122px;
+        height: 24px;
+        font-family: 'numbers';
+    }
+    
+    input {
+        -webkit-app-region: no-drag;
+    }
+</style>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body id="app" style="-webkit-app-region: drag; background-color: transparent;">
+    <div id="calc">
+        <div id="screen">
+            <input type="text" id="display" value="0">
+        </div>
+        <div id="row">
+            <input type="button" class="btn" id="clr" value="C">
+            <input type="button" class="btn" id="e" value="E">
+            <input type="button" class="btn" id="eql" value="=">
+            <input type="button" class="btn" id="mul" value="*">
+        </div>
+        <div id="row">
+            <input type="button" class="btn" id="k_7" value="7">
+            <input type="button" class="btn" id="k_8" value="8">
+            <input type="button" class="btn" id="k_9" value="9">
+            <input type="button" class="btn" id="div" value="/">
+        </div>
+        <div id="row">
+            <input type="button" class="btn" id="k_4" value="4">
+            <input type="button" class="btn" id="k_5" value="5">
+            <input type="button" class="btn" id="k_6" value="6">
+            <input type="button" class="btn" id="sub" value="-">
+        </div>
+        <div id="row">
+            <input type="button" class="btn" id="k_1" value="1">
+            <input type="button" class="btn" id="k_2" value="2">
+            <input type="button" class="btn" id="k_3" value="3">
+
+        </div>
+        <div id="row">
+            <input type="button" id="widebtn" value="0">
+            <input type="button" class="btn" id="dec" value=".">
+            <input type="button" id="tallbtn" value="+">
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    let keynum;
+    let currentvalue = "0";
+    let numsUsed = 0;
+    const depressedStyle = "background-color: black; color: white; border: solid 2px; border-color: white;"
+    const releasedStyle = "background-color: white; color: black; border: solid 2px; border-color: black;"
+    document.addEventListener('keydown', function(event) {
+        keynum = event.key;
+        // console.log(event)
+        switch (keynum) {
+            case "0":
+                document.getElementById("widebtn").style = depressedStyle;
+                if (numsUsed == 0) {
+                    currentvalue = keynum;
+                } else if (numsUsed >= 9) {
+                    //do nothing
+                } else {
+                    currentvalue += keynum;
+                }
+                numsUsed++;
+                break;
+            case "1":
+                document.getElementById("k_1").style = depressedStyle;
+                if (numsUsed == 0) {
+                    currentvalue = keynum;
+                } else if (numsUsed >= 9) {
+                    //do nothing
+                } else {
+                    currentvalue += keynum;
+                }
+                numsUsed++;
+                break;
+            case "2":
+                document.getElementById("k_2").style = depressedStyle;
+                if (numsUsed == 0) {
+                    currentvalue = keynum;
+                } else if (numsUsed >= 9) {
+                    //do nothing
+                } else {
+                    currentvalue += keynum;
+                }
+                numsUsed++;
+                break;
+            case "3":
+                document.getElementById("k_3").style = depressedStyle;
+                if (numsUsed == 0) {
+                    currentvalue = keynum;
+                } else if (numsUsed >= 9) {
+                    //do nothing
+                } else {
+                    currentvalue += keynum;
+                }
+                numsUsed++;
+                break;
+            case "4":
+                document.getElementById("k_4").style = depressedStyle;
+                if (numsUsed == 0) {
+                    currentvalue = keynum;
+                } else if (numsUsed >= 9) {
+                    //do nothing
+                } else {
+                    currentvalue += keynum;
+                }
+                numsUsed++;
+                break;
+            case "5":
+                document.getElementById("k_5").style = depressedStyle;
+                if (numsUsed == 0) {
+                    currentvalue = keynum;
+                } else if (numsUsed >= 9) {
+                    //do nothing
+                } else {
+                    currentvalue += keynum;
+                }
+                numsUsed++;
+                break;
+            case "6":
+                document.getElementById("k_6").style = depressedStyle;
+                if (numsUsed == 0) {
+                    currentvalue = keynum;
+                } else if (numsUsed >= 9) {
+                    //do nothing
+                } else {
+                    currentvalue += keynum;
+                }
+                numsUsed++;
+                break;
+            case "7":
+                document.getElementById("k_7").style = depressedStyle;
+                if (numsUsed == 0) {
+                    currentvalue = keynum;
+                } else if (numsUsed >= 9) {
+                    //do nothing
+                } else {
+                    currentvalue += keynum;
+                }
+                numsUsed++;
+                break;
+            case "8":
+                document.getElementById("k_8").style = depressedStyle;
+                if (numsUsed == 0) {
+                    currentvalue = keynum;
+                } else if (numsUsed >= 9) {
+                    //do nothing
+                } else {
+                    currentvalue += keynum;
+                }
+                numsUsed++;
+                break;
+            case "9":
+                document.getElementById("k_9").style = depressedStyle;
+                if (numsUsed == 0) {
+                    currentvalue = keynum;
+                } else if (numsUsed >= 9) {
+                    //do nothing
+                } else {
+                    currentvalue += keynum;
+                }
+                numsUsed++;
+                break;
+            case "Enter":
+                document.getElementById("eql").style = depressedStyle;
+                break;
+            case ".":
+                document.getElementById("dec").style = depressedStyle;
+                break;
+            case "/":
+                document.getElementById("div").style = depressedStyle;
+                break;
+            case "*":
+                document.getElementById("mul").style = depressedStyle;
+                break;
+            case "-":
+                document.getElementById("sub").style = depressedStyle;
+                break;
+            case "+":
+                document.getElementById("tallbtn").style = depressedStyle;
+                break;
+            case "e":
+                document.getElementById("e").style = depressedStyle;
+                break;
+            case "Backspace":
+                document.getElementById("clr").style = depressedStyle;
+                break;
+
+        }
+        console.log(numsUsed)
+        document.getElementById("display").value = currentvalue;
+    });
+    document.addEventListener('keyup', function(event) {
+        keynum = event.key;
+        // console.log(event)
+        switch (keynum) {
+            case "0":
+                document.getElementById("widebtn").style = releasedStyle;
+                break;
+            case "1":
+                document.getElementById("k_1").style = releasedStyle;
+                break;
+            case "2":
+                document.getElementById("k_2").style = releasedStyle;
+                break;
+            case "3":
+                document.getElementById("k_3").style = releasedStyle;
+                break;
+            case "4":
+                document.getElementById("k_4").style = releasedStyle;
+                break;
+            case "5":
+                document.getElementById("k_5").style = releasedStyle;
+                break;
+            case "6":
+                document.getElementById("k_6").style = releasedStyle;
+                break;
+            case "7":
+                document.getElementById("k_7").style = releasedStyle;
+                break;
+            case "8":
+                document.getElementById("k_8").style = releasedStyle;
+                break;
+            case "9":
+                document.getElementById("k_9").style = releasedStyle;
+                break;
+            case "Enter":
+                document.getElementById("eql").style = releasedStyle;
+                break;
+            case ".":
+                document.getElementById("dec").style = releasedStyle;
+                break;
+            case "/":
+                document.getElementById("div").style = releasedStyle;
+                break;
+            case "*":
+                document.getElementById("mul").style = releasedStyle;
+                break;
+            case "-":
+                document.getElementById("sub").style = releasedStyle;
+                break;
+            case "+":
+                document.getElementById("tallbtn").style = releasedStyle;
+                break;
+            case "e":
+                document.getElementById("e").style = releasedStyle;
+                break;
+            case "Backspace":
+                document.getElementById("clr").style = releasedStyle;
+                break;
+        }
+    });
+</script>
+
+</html>
