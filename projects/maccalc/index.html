@@ -131,48 +131,61 @@
 <body id="app" style="-webkit-app-region: drag; background-color: transparent;">
     <div id="calc">
         <div id="screen">
-            <input type="text" id="display" value="0">
+            <input type="text" id="display" value="0" style="pointer-events: none;">
         </div>
         <div id="row">
-            <input type="button" class="btn" id="clr" value="C">
-            <input type="button" class="btn" id="e" value="E">
-            <input type="button" class="btn" id="eql" value="=">
-            <input type="button" class="btn" id="mul" value="*">
+            <input type="button" class="btn" id="clr" value="C" onmousedown="inputHandler('Backspace');" onmouseup="releaseHandler('Backspace');">
+            <input type="button" class="btn" id="e" value="E" onmousedown="inputHandler('e');" onmouseup="releaseHandler('e');">
+            <input type="button" class="btn" id="eql" value="=" onmousedown="inputHandler('Enter');" onmouseup="releaseHandler('Enter');">
+            <input type="button" class="btn" id="mul" value="*" onmousedown="inputHandler('*');" onmouseup="releaseHandler('*');">
         </div>
         <div id="row">
-            <input type="button" class="btn" id="k_7" value="7">
-            <input type="button" class="btn" id="k_8" value="8">
-            <input type="button" class="btn" id="k_9" value="9">
-            <input type="button" class="btn" id="div" value="/">
+            <input type="button" class="btn" id="k_7" value="7" onmousedown="inputHandler('7');" onmouseup="releaseHandler('7');">
+            <input type="button" class="btn" id="k_8" value="8" onmousedown="inputHandler('8');" onmouseup="releaseHandler('8');">
+            <input type="button" class="btn" id="k_9" value="9" onmousedown="inputHandler('9');" onmouseup="releaseHandler('9');">
+            <input type="button" class="btn" id="div" value="/" onmousedown="inputHandler('/');" onmouseup="releaseHandler('/');">
         </div>
         <div id="row">
-            <input type="button" class="btn" id="k_4" value="4">
-            <input type="button" class="btn" id="k_5" value="5">
-            <input type="button" class="btn" id="k_6" value="6">
-            <input type="button" class="btn" id="sub" value="-">
+            <input type="button" class="btn" id="k_4" value="4" onmousedown="inputHandler('4');" onmouseup="releaseHandler('4');">
+            <input type="button" class="btn" id="k_5" value="5" onmousedown="inputHandler('5');" onmouseup="releaseHandler('5');">
+            <input type="button" class="btn" id="k_6" value="6" onmousedown="inputHandler('6');" onmouseup="releaseHandler('6');">
+            <input type="button" class="btn" id="sub" value="-" onmousedown="inputHandler('-');" onmouseup="releaseHandler('-');">
         </div>
         <div id="row">
-            <input type="button" class="btn" id="k_1" value="1">
-            <input type="button" class="btn" id="k_2" value="2">
-            <input type="button" class="btn" id="k_3" value="3">
+            <input type="button" class="btn" id="k_1" value="1" onmousedown="inputHandler('1');" onmouseup="releaseHandler('1');">
+            <input type="button" class="btn" id="k_2" value="2" onmousedown="inputHandler('2');" onmouseup="releaseHandler('2');">
+            <input type="button" class="btn" id="k_3" value="3" onmousedown="inputHandler('3');" onmouseup="releaseHandler('3');">
 
         </div>
         <div id="row">
-            <input type="button" id="widebtn" value="0">
-            <input type="button" class="btn" id="dec" value=".">
-            <input type="button" id="tallbtn" value="+">
+            <input type="button" id="widebtn" value="0" onmousedown="inputHandler('0');" onmouseup="releaseHandler('0');">
+            <input type="button" class="btn" id="dec" value="." onmousedown="inputHandler('.');" onmouseup="releaseHandler('.');">
+            <input type="button" id="tallbtn" value="+" onmousedown="inputHandler('+');" onmouseup="releaseHandler('+');">
         </div>
     </div>
 </body>
 <script type="text/javascript">
     let keynum;
     let currentvalue = "0";
+    let value1 = 0;
+    let value2 = 0;
+    let total = 0;
+    let operator = "";
     let numsUsed = 0;
+    let lastKey = "";
+    let hasDec = false;
     const depressedStyle = "background-color: black; color: white; border: solid 2px; border-color: white;"
     const releasedStyle = "background-color: white; color: black; border: solid 2px; border-color: black;"
     document.addEventListener('keydown', function(event) {
         keynum = event.key;
-        // console.log(event)
+        inputHandler(keynum);
+    });
+
+    function displayTotal(total) {
+        document.getElementById("display").value = total;
+    }
+
+    function inputHandler(keynum) {
         switch (keynum) {
             case "0":
                 document.getElementById("widebtn").style = depressedStyle;
@@ -180,6 +193,9 @@
                     currentvalue = keynum;
                 } else if (numsUsed >= 9) {
                     //do nothing
+                } else if (lastKey == "Enter") {
+                    numsUsed = 0;
+                    currentvalue = keynum
                 } else {
                     currentvalue += keynum;
                 }
@@ -191,6 +207,9 @@
                     currentvalue = keynum;
                 } else if (numsUsed >= 9) {
                     //do nothing
+                } else if (lastKey == "Enter") {
+                    numsUsed = 0;
+                    currentvalue = keynum
                 } else {
                     currentvalue += keynum;
                 }
@@ -202,6 +221,9 @@
                     currentvalue = keynum;
                 } else if (numsUsed >= 9) {
                     //do nothing
+                } else if (lastKey == "Enter") {
+                    numsUsed = 0;
+                    currentvalue = keynum
                 } else {
                     currentvalue += keynum;
                 }
@@ -213,17 +235,22 @@
                     currentvalue = keynum;
                 } else if (numsUsed >= 9) {
                     //do nothing
+                } else if (lastKey == "Enter") {
+                    numsUsed = 0;
+                    currentvalue = keynum
                 } else {
                     currentvalue += keynum;
                 }
                 numsUsed++;
                 break;
             case "4":
-                document.getElementById("k_4").style = depressedStyle;
                 if (numsUsed == 0) {
                     currentvalue = keynum;
                 } else if (numsUsed >= 9) {
                     //do nothing
+                } else if (lastKey == "Enter") {
+                    numsUsed = 0;
+                    currentvalue = keynum
                 } else {
                     currentvalue += keynum;
                 }
@@ -235,6 +262,9 @@
                     currentvalue = keynum;
                 } else if (numsUsed >= 9) {
                     //do nothing
+                } else if (lastKey == "Enter") {
+                    numsUsed = 0;
+                    currentvalue = keynum
                 } else {
                     currentvalue += keynum;
                 }
@@ -246,6 +276,9 @@
                     currentvalue = keynum;
                 } else if (numsUsed >= 9) {
                     //do nothing
+                } else if (lastKey == "Enter") {
+                    numsUsed = 0;
+                    currentvalue = keynum
                 } else {
                     currentvalue += keynum;
                 }
@@ -257,6 +290,9 @@
                     currentvalue = keynum;
                 } else if (numsUsed >= 9) {
                     //do nothing
+                } else if (lastKey == "Enter") {
+                    numsUsed = 0;
+                    currentvalue = keynum
                 } else {
                     currentvalue += keynum;
                 }
@@ -268,6 +304,9 @@
                     currentvalue = keynum;
                 } else if (numsUsed >= 9) {
                     //do nothing
+                } else if (lastKey == "Enter") {
+                    numsUsed = 0;
+                    currentvalue = keynum
                 } else {
                     currentvalue += keynum;
                 }
@@ -279,6 +318,9 @@
                     currentvalue = keynum;
                 } else if (numsUsed >= 9) {
                     //do nothing
+                } else if (lastKey == "Enter") {
+                    numsUsed = 0;
+                    currentvalue = keynum
                 } else {
                     currentvalue += keynum;
                 }
@@ -286,36 +328,119 @@
                 break;
             case "Enter":
                 document.getElementById("eql").style = depressedStyle;
+                if (numsUsed == 0) {
+                    break;
+                } else {
+                    switch (operator) {
+                        case 'a':
+                            total = parseFloat(currentvalue) + parseFloat(value1);
+                            currentvalue = total;
+                            displayTotal(total);
+                            break;
+                        case 's':
+                            total = parseFloat(value1) - parseFloat(currentvalue);
+                            currentvalue = total;
+                            displayTotal(total);
+                            break;
+                        case 'm':
+                            total = parseFloat(currentvalue) * parseFloat(value1);
+                            currentvalue = total;
+                            displayTotal(total);
+                            break;
+                        case 'd':
+                            total = parseFloat(value1) / parseFloat(currentvalue);
+                            currentvalue = total;
+                            displayTotal(total);
+                            break;
+                        case 'e':
+                            let splitVal = currentvalue.split('E');
+                            value2 = parseFloat(splitVal[1]);
+                            total = value1 * (10 ^ value2);
+                            currentvalue = total;
+                            displayTotal(total);
+                            break;
+                    }
+                    // numsUsed = 0;
+                }
                 break;
             case ".":
                 document.getElementById("dec").style = depressedStyle;
+                if (hasDec) break;
+                if (numsUsed == 0) {
+                    currentvalue += keynum;
+                } else if (numsUsed >= 9) {
+                    //do nothing
+                } else if (lastKey == "Enter") {
+                    numsUsed = 0;
+                    currentvalue = `0${keynum}`;
+                } else {
+                    currentvalue += keynum;
+                }
+                numsUsed++;
                 break;
             case "/":
                 document.getElementById("div").style = depressedStyle;
+                operator = "d";
+                if (numsUsed == 0) {
+                    break;
+                } else {
+                    value1 = currentvalue;
+                    numsUsed = 0;
+                }
                 break;
             case "*":
                 document.getElementById("mul").style = depressedStyle;
+                operator = "m";
+                if (numsUsed == 0) {
+                    break;
+                } else {
+                    value1 = currentvalue;
+                    numsUsed = 0;
+                }
                 break;
             case "-":
                 document.getElementById("sub").style = depressedStyle;
+                operator = "s";
+                if (numsUsed == 0) {
+                    break;
+                } else {
+                    value1 = currentvalue;
+                    numsUsed = 0;
+                }
                 break;
             case "+":
                 document.getElementById("tallbtn").style = depressedStyle;
+                operator = "a";
+                if (numsUsed == 0) break;
+                value1 = currentvalue;
+                numsUsed = 0;
                 break;
             case "e":
                 document.getElementById("e").style = depressedStyle;
+                operator = "e";
+                if (numsUsed == 0) break;
+                value1 = currentvalue;
+                currentvalue += "E";
                 break;
             case "Backspace":
                 document.getElementById("clr").style = depressedStyle;
+                currentvalue = "0";
+                numsUsed = 0;
                 break;
-
         }
+        lastKey = keynum;
         console.log(numsUsed)
         document.getElementById("display").value = currentvalue;
-    });
+    }
+
     document.addEventListener('keyup', function(event) {
         keynum = event.key;
+        releaseHandler(keynum);
         // console.log(event)
+
+    });
+
+    function releaseHandler(keynum) {
         switch (keynum) {
             case "0":
                 document.getElementById("widebtn").style = releasedStyle;
@@ -372,7 +497,7 @@
                 document.getElementById("clr").style = releasedStyle;
                 break;
         }
-    });
+    }
 </script>
 
 </html>
