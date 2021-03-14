@@ -1,4 +1,5 @@
-<html>
+<html lang="en">
+<meta charset="utf-8" />
 
 <head>
     <style>
@@ -39,17 +40,19 @@
         
         .lighterSection {
             display: flex;
+            margin: auto;
             flex-direction: column;
             justify-content: space-evenly;
             align-items: top;
-            height: 12rem;
-            padding: 0 1rem;
-            background: #1a2a2f;
+            height: 18rem;
+            width: 40rem;
+            padding: 1rem;
+            background: #417f92;
             border-color: #ffffff0a;
             border-style: solid;
             border-width: 1px;
-            border-radius: 1px;
-            box-shadow: #0000005f 1px 1px;
+            border-radius: 5px;
+            box-shadow: #0000005f 7px 6px;
         }
         
         input#btn {
@@ -58,10 +61,12 @@
             width: auto;
             background-color: #102027;
             border: solid;
-            border-color: #1a2a2f;
+            border-color: #102027;
             border-radius: 5px;
             color: white;
-            padding: .5rem;
+            box-shadow: #0000005f 7px 3px;
+            margin-left: 1rem;
+            /* padding: .5rem; */
             text-align: center;
             text-decoration: none;
             display: inline-block;
@@ -114,7 +119,7 @@
         }
     </style>
     <title>tnk-rin</title>
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">  -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet"> -->
     <link rel="icon" type="image/png" href="media/icon.png">
 </head>
@@ -123,11 +128,54 @@
     <div class="plsCenterMe">
         <div class="lighterSection">
             <h2>tnk's github portfolio thing.</h2>
-            <input type="button" id="btn" value="VolumeControl.h" onclick="window.location='projects/volumecontrol.html'">
+            <input type="button" id="btn" value="VolumeControl.h" onclick="window.location='https://github.com/tnk-rin/VolumeControl'">
+            <input type="button" id="btn" value="FlaskControl" onclick="window.location='https://github.com/tnk-rin/FlaskControl'">
+            <input type="button" id="btn" value="FlaskControlServer" onclick="window.location='https://github.com/tnk-rin/FlaskControl_Server'">
+            <input type="button" id="btn" value="github.io source" onclick="window.location='https://github.com/tnk-rin/tnk-rin.github.io'">
         </div>
     </div>
     <script>
-        // alert(":glad:")
+        // satania moment
+        /* 
+        ⢀⢀⢀⢀⢀⢀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣄⢀⠠⡀ 
+        ⢀⢀⢀⢀⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣤⣙⣿⣿⣾⣷⣄ 
+        ⢀⢀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄ 
+        ⢀⢀⠜⣿⠙⣹⡻⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄ 
+        ⢀⢀⣰⣿⢠⣿⣇⣶⣿⣿⣿⣿⣿⣿⣿⡟⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⢀⢀⢀⢀ 
+        ⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢀⢀⠍⠙⢿⡟⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⣴⣾⠃ 
+        ⣿⣿⣿⣿⣿⣿⣿⠹⣿⣿⣿⣿⣿⣿⣿⠁⠈⢀⡤⢲⣾⣗⠲⣿⣿⣿⣿⣿⣿⣟⠻⢿⣿⣿⡿⠃ 
+        ⡿⣿⣿⣿⣿⣿⣿⡀⢙⣿⣿⣿⣿⣿⣿⢀⠰⠁⢰⣾⣿⣿⡇⢀⣿⣿⣿⣿⣿⣿⡄⠈⢿⣿⣿⣿⣦⣄⡀ 
+        ⡇⢻⣿⣿⣿⣿⢿⣇⢀⢀⠙⠷⣍⠛⠛⢀⢀⢀⢀⠙⠋⠉⢀⢀⢸⣿⣿⣿⣿⣿⣷⢀⡟⣿⣿⣿⣿⣿⣟⠦ 
+        ⠰⢀⠻⣿⣿⣿⣧⡙⠆⢀⣀⠤⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢸⣿⣿⣿⣿⣿⣿⢿⣧⢸⢻⣿⣿⠿⢿⡆⠁⠠⠠ 
+        ⢀⢀⢀⠈⢿⣿⣿⣷⣖⠋⠁⢀⢀⢀⢀⢀⢀⣀⣀⣄⢀⢀⢀⢀⢸⠏⣿⣿⣿⢿⣿⢸⣿⣆⢀⢻⣿⣆⢀⢀⢀⢀⢀⣀⡀ 
+        ⢀⢀⢀⢀⠈⣿⣿⣿⣷⡀⢀⢀⢀⢀⢀⡒⠉⠉⢀⢀⢀⢀⢀⢀⢈⣴⣿⣿⡿⢀⡿⢀⢻⣿⣆⡈⣿⣿⠂⢀⢀⢀⢸⣿⢀⢀⢀⢀⢀ 
+        ⢀⢀⢀⢀⢀⠘⣿⣿⣿⣷⣄⢀⢀⢀⢀⠐⠄⢀⢀⢀⠈⢀⣀⣴⣿⣿⣿⡿⠁⢀⣡⣶⣿⣿⣿⣿⣿⣯⣄⢀⢀⢀⢸⣿⢀⢀⢀⢀⠐⣠⣾ ⢀
+        ⢀⢀⢀⢀⢀⢹⠻⣿⣿⣿⣿⣆⠢⣤⣄⢀⢀⣀⠠⢴⣾⣿⣿⡿⢋⠟⢡⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⡄⣿⣿⢂⠐⢀⣤⡾⡟⠁ 
+        ⢀⢀⢀⢀⢀⢀⠸⢀⠘⠿⣿⣿⣿⣦⣹⣿⣀⣀⣀⣀⠘⠛⠋⠁⡀⣄⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢀⣿⣿⣴⣾⣿⣭⣄⢀⢀ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⠈⠛⣽⣿⣿⣿⣿⣿⣿⠁⢀⢀⢀⣡⣾⣿⣿⣿⡟⣹⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣶ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢰⣿⣿⣿⣿⣿⣿⣿⣦⣤⣶⣿⡿⢛⢿⡇⠟⠰⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⣿⣿⣿⡿⢉⣭⢭⠏⣿⡿⢸⡏⣼⣿⢴⡇⢸⣿⣶⣿⣿⣿⣿⣿⣿⣿⠇⢀⢀⣿⣿⣿⣿⡿⢿⣿⣿⡿⠟⠁ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢰⣿⣿⣿⢃⣶⣶⡏⠸⠟⣱⣿⣧⣛⣣⢾⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠈⢀⢀⡼⠉⠉⠉⠁⢀⢀⢀⢀⢀⢀⢀ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⣾⣿⣿⣿⣾⣿⣿⠟⢻⡿⡉⣷⣬⡛⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⡯⢀⢀⠴⠋ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⣸⣿⣿⣿⣿⣿⣿⡿⢰⠘⣰⣇⣿⣿⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⠘⢿⣿⣿⣿⣿⣿⡷⢺⣿⠟⣩⣭⣽⣇⠲⠶⣿⣿⣿⣿⣿⣿⣿⠃ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⠐⢀⣾⣿⣿⣿⣿⠟⢐⡈⣿⣷⣶⠎⣹⡟⠟⣛⣸⣿⣿⣿⣿⣿⣿ 
+        ⢀⢀⢀⢀⢀⢀⢀⠠⢀⣼⣿⣿⣿⣿⣯⣼⣿⣷⣿⣷⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ 
+        ⢀⢀⢀⢀⢀⢀⢀⠐⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⠂⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⠈⠼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⠹⠉⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⠓⣀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⠄⡠⣹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⠉⠛⢦ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⠉⢀⢀⢀⢀⢀⢀⠁⡀ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⡿⠟⠁⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⠐ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⠈⠙⠻⠿⢿⣿⣿⣿⣿⣿⡿⣿⡟⣿⠹⣮⣿⠁⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⠠ 
+        ⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⠉⢀⠛⠳⢾⣷⣾⣿⣹⣿⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢀⢧ 
+        :glad3:
+        */
     </script>
 </body>
 
