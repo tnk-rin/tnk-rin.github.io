@@ -36,7 +36,7 @@
 			<div class="title-bar-text" style="margin-left: 0.3rem;">Hardware Projects</div>
 			<div class="title-bar-controls">
 				<button aria-label="Maximize" disabled></button>
-			  	<button aria-label="Close" id="close"></button>
+			  	<button aria-label="Close" onclick="closeBtn()"></button>
 			</div>
 		</div>
 
@@ -58,7 +58,9 @@
 			</div>
 		</div>
 		<script>
-		
+			function closeBtn() {
+				window.location.href = "../index.html"
+			}
 		</script>
 	</body>
 </html>
