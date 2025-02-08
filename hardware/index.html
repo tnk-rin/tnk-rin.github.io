@@ -5,36 +5,60 @@
 		<meta charset="utf-8" />
 	    <style>
 			body {
-				height: 100%;
-				width: 98%;
-				background-image: url('../media/w95.jpg');
+				height: 90%;
+				width: 100%;
+				margin-left: 0;
+				margin-top: 0;
+				background: #c0c0c0;
 			}
 
 			li {
 				background: #c0c0c0;
+				font-family: "Pixelated MS Sans Serif",Arial; 
+				font-size: 11px;
+			}
+
+			p {
+				font-family: "Pixelated MS Sans Serif",Arial; 
+			}
+
+			.status-bar-field {
+				font-size: 11px;
 			}
 		</style>
 
-		<link rel="stylesheet" href="https://tnk-rin.github.io/style/98.css">
+		<link rel="stylesheet" href="https://unpkg.com/98.css" />
 	</head>
 
 	<body>
 		<!-- Main window -->
-		<div class="window-body" style="height: 100%; width: 100%">
+		<div class="title-bar">
+			<div class="title-bar-text" style="margin-left: 0.3rem;">Hardware Projects</div>
+			<div class="title-bar-controls">
+				<button aria-label="Maximize" disabled></button>
+			  	<button aria-label="Close" id="close"></button>
+			</div>
+		</div>
+
+		<div class="window-body" style="margin-top: .5rem; width: 99%">
 			<menu role="tablist">
 				<li role="tab" aria-selected="true"><a href="#tabs">Overview</a></li>
 				<li role="tab"><a href="#tabs">CANBus Dashboard</a></li>
 				<li role="tab"><a href="#tabs">Dendrogram</a></li>
 				<li role="tab"><a href="#tabs">ESP2812b</a></li>
 			</menu>
-			<div class="window" role="tabpanel" style="height: 100%">
-				<div class="window-body" style="height: 100%">
-				<p style="height: 890px;">This page will serve as a overview and description of some of the hardware projects hosted on this github.</p>
+			<div class="window" role="tabpanel">
+				<div class="window-body">
+				<p style="height: 53rem">This page will serve as a overview and description of some of the hardware projects hosted on this github.</p>
 				</div>
+			</div>
+			<div class="status-bar" style="margin-top: .5rem">
+				<p class="status-bar-field">Hardware</p>
+				<p class="status-bar-field">Overview</p>
 			</div>
 		</div>
 		<script>
-			
+		
 		</script>
 	</body>
 </html>
