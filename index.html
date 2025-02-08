@@ -9,15 +9,28 @@
 				width: 100%;
 				background-image: url('media/w95.jpg');
 			}
+
+			#main {
+				width: 300px;
+				margin-left: 30%; 
+				margin-top: 20%
+			}
+
+			#credits {
+				width: 300px; 
+				margin-left: 40%; 
+				margin-top: 30%
+			}
 		</style>
 
 		<link rel="stylesheet" href="https://tnk-rin.github.io/style/98.css">
 	</head>
 
 	<body>
-		<div class="window" style="width: 300px; margin: 10%;">
+		<!-- Main window -->
+		<div id="main" class="window">
 			<div class="title-bar">
-				<div class="title-bar-text">Construction!</div>
+				<div class="title-bar-text">tnk-rin's portfolio thing</div>
 				<div class="title-bar-controls">
 					<button aria-label="Minimize" style="margin-right: 2px"></button>
 					<button aria-label="Maximize"></button>
@@ -25,15 +38,22 @@
 				</div>
 			</div>
 			<div class="window-body">
-				<p>woo yeah, yeah woo woo yeah, woo time</p>
+				<p>Select a view:</p>
 				<section class="field-row" style="justify-content: flex-end">
-					<button>OK</button>
-					<button>Cancel</button>
+					<button onclick="hardware()">Hardware</button>
+					<button onclick="software()">Software</button>
 				</section>
 			</div>
 		</div>
+		
 		<script>
-			
+			function hardware() {
+				window.location.href = "hardware/index.html"
+			}
+
+			function software() {
+				window.location.href = "software/index.html"
+			}
 		</script>
 	</body>
 </html>
